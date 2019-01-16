@@ -28,7 +28,6 @@ void setup() {
   Serial.begin(9600);        // start serial 
   
   Serial.println("- Start Serial Monitor -"); // For logging purposes
-  
 }
 
 void loop() {
@@ -42,10 +41,10 @@ void loop() {
 
   /* Usual operation */
   digitalWrite(motorPin, HIGH); // Turn pump on
-  nowWatering();                // Currently watering
+  digitalWrite(ledPin, HIGH); // turn on the built-in LED
   delay(waterTime);        // Pump active time
 
-  nowIdle();                    // Currently not watering
+  digitalWrite(ledPin, LOW); // turn off the built-in LED
   digitalWrite(motorPin, LOW);  // Turn pump off
 
   /* Track number of times it ran */
@@ -55,16 +54,6 @@ void loop() {
   /* Wait until next watering */
   delay(waittime);        // Delay between watering period
 
-}
-
-void nowWatering ()
-{
-  digitalWrite(ledPin, HIGH); // turn on the built-in LED
-}
-
-void nowIdle()
-{
-  digitalWrite(ledPin, LOW); // turn off the built-in LED
 }
 
 void logEvents(int numbTimes)
